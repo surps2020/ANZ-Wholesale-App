@@ -36,7 +36,7 @@ class AnzWholesaleAppApplicationTests {
 
     @Test
     public void whenGetRequestToApi_thenCorrectResponse() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/api")
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/accountList")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON));
