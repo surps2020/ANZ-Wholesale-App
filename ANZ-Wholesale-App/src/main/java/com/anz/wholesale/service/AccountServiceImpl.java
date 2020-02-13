@@ -21,8 +21,7 @@ public class AccountServiceImpl implements AccountService {
 
 	private static List<AccountList> accounts;
 	private static Map<String, AccountTranscation> transcations;
-	private static List<AccountTranscation> transcationsList;
-
+	
 	public AccountServiceImpl() {
 		// TODO Auto-generated constructor stub
 	}
