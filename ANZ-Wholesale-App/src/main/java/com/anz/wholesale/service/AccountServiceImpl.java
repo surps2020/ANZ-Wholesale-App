@@ -39,15 +39,14 @@ private static List<AccountList> AccountLists(){
    }
 
 public List<AccountTranscation> getAllTranscationList(String accountNumber) {
-	return  transcations.stream().filter(x-> x.getAccountNumber() == accountNumber).collect(Collectors.toList());
-	}
+	return transcations.stream().filter(x-> x.getAccountNumber().equals(accountNumber)).collect(Collectors.toList());
+	 }
 	
 private static List<AccountTranscation> AccountTranscations(){
     List<AccountTranscation> transcations= new ArrayList<AccountTranscation>();
     transcations.add(new AccountTranscation("123-2223-212", "CurrentAccount", "01/12/2012", "SGD",0.00,9540.98,"Credit",""));
     transcations.add(new AccountTranscation("123-2223-212", "CurrentAccount", "01/12/2012", "SGD",0.00,7497.82,"Credit",""));
     transcations.add(new AccountTranscation("123-2223-213", "SavingAccount", "01/12/2012", "SGD",0.00,7492.22,"Credit",""));
-
-    return transcations;
+	return transcations;
 }
 }

@@ -5,18 +5,16 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.anz.wholesale.bean.AccountList;
 import com.anz.wholesale.bean.AccountTranscation;
 import com.anz.wholesale.service.AccountService;
-import com.sun.media.jfxmedia.Media;
+
 
 
 @RestController
@@ -38,8 +36,10 @@ public List<AccountList> getAllAccountList() {
 }
 
 @RequestMapping(value = "/transcationList", method = RequestMethod.GET)
-public List<AccountTranscation> getAlltranscationList(@RequestParam("accountNumber") String accountNumber) {
+public List<AccountTranscation> getAlltranscationList(@RequestParam("accNum") String accountNumber) {
 	logger.debug("Inside TranscationList Controller Method ");
-	return accountService.getAllTranscationList(accountNumber);
+		return accountService.getAllTranscationList(accountNumber);
+
 }
+
 }
