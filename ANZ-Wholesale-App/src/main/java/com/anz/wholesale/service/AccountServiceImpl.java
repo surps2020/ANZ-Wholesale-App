@@ -1,7 +1,11 @@
 package com.anz.wholesale.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -10,12 +14,16 @@ import org.springframework.stereotype.Service;
 import com.anz.wholesale.bean.AccountList;
 import com.anz.wholesale.bean.AccountTranscation;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
+
 
 @Service
 public class AccountServiceImpl implements AccountService{
 
 	private static List<AccountList> accounts;
-	private static List<AccountTranscation> transcations;
+	private static Map<String, AccountTranscation> transcations;
+	private static List<AccountTranscation> transcationsList;
+
 	
 	public AccountServiceImpl() {
 		// TODO Auto-generated constructor stub
@@ -23,7 +31,7 @@ public class AccountServiceImpl implements AccountService{
   
 	static{
 		accounts= AccountLists();
-		transcations= AccountTranscations();
+		transcations= AccountTranscationLists();
    }
 	
 	
@@ -39,14 +47,16 @@ private static List<AccountList> AccountLists(){
    }
 
 public List<AccountTranscation> getAllTranscationList(String accountNumber) {
-	return transcations.stream().filter(x-> x.getAccountNumber().equals(accountNumber)).collect(Collectors.toList());
+  	if(transcations.containsKey(accountNumber))
+	{
+     transcationsList.add(transcations.get(accountNumber));
 	 }
-	
-private static List<AccountTranscation> AccountTranscations(){
-    List<AccountTranscation> transcations= new ArrayList<AccountTranscation>();
-    transcations.add(new AccountTranscation("123-2223-212", "CurrentAccount", "01/12/2012", "SGD",0.00,9540.98,"Credit",""));
-    transcations.add(new AccountTranscation("123-2223-212", "CurrentAccount", "01/12/2012", "SGD",0.00,7497.82,"Credit",""));
-    transcations.add(new AccountTranscation("123-2223-213", "SavingAccount", "01/12/2012", "SGD",0.00,7492.22,"Credit",""));
+	return transcationsList;
+}
+private static Map<String, AccountTranscation> AccountTranscationLists(){
+    Map<String,AccountTranscation> transcations= new HashMap<String,AccountTranscation>();
+    transcations.put("123-2223-212",new AccountTranscation("123-2223-212", "CurrentAccount", "01/12/2012", "SGD",0.00,9540.98,"Credit",""));
+    transcations.put("123-2223-213",new AccountTranscation("123-2223-213", "SavingAccount", "01/12/2012", "SGD",0.00,7492.22,"Credit",""));
 	return transcations;
 }
 }
