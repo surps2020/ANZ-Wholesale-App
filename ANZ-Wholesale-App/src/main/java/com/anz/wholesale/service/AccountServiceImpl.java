@@ -44,6 +44,7 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	public List<AccountTranscation> getAllTranscationList(String accountNumber) {
+		List<AccountTranscation> transcationsList = new ArrayList<AccountTranscation>();
 		if (transcations.containsKey(accountNumber)) {
 			transcationsList.add(transcations.get(accountNumber));
 		}
