@@ -15,32 +15,11 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import com.anz.wholesale.controller.AccountController;
 
 @SpringBootTest
-@WebMvcTest
-@AutoConfigureMockMvc
 class AnzWholesaleAppApplicationTests {
 
 	@Test
 	void contextLoads() {
 	}
-    
-    @Autowired
-    AccountController accountController;
-
-    @Autowired
-    private MockMvc mockMvc;
-
-    @Test
-    public void whenUserControllerInjected_thenNotNull() throws Exception {
-        assertThat(accountController).isNotNull();
-    }
-
-    @Test
-    public void whenGetRequestToApi_thenCorrectResponse() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/accountList")
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON));
-    
-    }
+      
    
 }
